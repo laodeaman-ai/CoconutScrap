@@ -37,3 +37,16 @@ def coconut(df, list_organism):
     df_filtered.to_csv('data_coconut_filtered.csv', index=False)
     print("Coconut Data filtered saved in coconut_data_filtered.csv.")
     return df_filtered
+
+if __name__ == "__main__":
+    # Contoh penggunaan
+    coconut_url = 'https://coconut.s3.uni-jena.de/prod/downloads/2024-10/coconut_complete-10-2024.csv.zip'
+    zip_file_name = 'data_coconut.csv.zip'
+    csv_file_name = 'data_coconut.csv'
+
+    download_file(coconut_url, zip_file_name)
+    extract_zip(zip_file_name, csv_file_name)
+    df_cleaned = clean_data(csv_file_name)
+
+    list_organism = ['Escherichia coli', 'Homo sapiens']  # Ganti dengan organisme yang sesuai
+    coconut(df_cleaned, list_organism)
